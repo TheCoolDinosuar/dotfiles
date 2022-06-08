@@ -23,8 +23,8 @@ set scrolloff=20 " Keep 20 lines above and below cursor
 set incsearch
 
 " Shortcuts
-noremap <Leader>v :so $MYVIMRC
-noremap <Leader>d :CocDisable
+noremap <Leader>v :so $MYVIMRC<CR>
+noremap <Leader>d :CocDisable<CR>
 
 
 if expand("%:e") == "tex"
