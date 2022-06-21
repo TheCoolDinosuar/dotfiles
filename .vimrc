@@ -15,6 +15,9 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 
+" Display a cat
+echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
+
 set cursorline " Customize cursor highlighting stuff etc
 hi CursorLine cterm=None ctermbg=234 guibg=NONE guifg=NONE
 
