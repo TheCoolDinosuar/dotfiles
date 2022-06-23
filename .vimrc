@@ -1,6 +1,4 @@
-set number
 set tabstop=4
-" testtesttmux
 set softtabstop=4
 set expandtab
 set showcmd
@@ -9,6 +7,7 @@ set foldenable
 set foldlevelstart=8
 set wrap
 set relativenumber
+set numberwidth=5
 set encoding=utf-8
 set hidden
 set cmdheight=2
