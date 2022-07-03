@@ -72,22 +72,6 @@ vnoremap <Leader>" <ESC>`<i"<ESC>`>a"<ESC>
 nnoremap <Leader>' bi'<ESC>ea'<ESC>
 vnoremap <Leader>' <ESC>`<i'<ESC>`>a'<ESC>
 
-" The big jk
-" Courtesy of u/jessekelighine
-" https://www.reddit.com/r/vim/comments/ufgrl8/journey_to_the_ultimate_imap_jk_esc/
-" Map key chord `jk` to <ESC>
-let g:esc_j_lasttime = 0
-let g:esc_k_lasttime = 0
-function JKescape(key)
-    echo "JKescape called"
-    if a:key=='j' | let g:esc_j_lasttime = reltimefloat(reltime()) | endif
-    if a:key=='k' | let g:esc_k_lasttime = reltimefloat(reltime()) | endif
-    let l:timediff = abs(g:esc_j_lasttime - g:esc_k_lasttime)
-    return (l:timediff <= 0.1 && l:timediff >=0.001) ? "\b\e" : a:key
-endfunction
-inoremap <expr> j JKescape('j')
-inoremap <expr> k JKescape('k')
-
 " Abbreviations
 iabbrev @@ fluffy_pentacorns@hotmail.com
 
