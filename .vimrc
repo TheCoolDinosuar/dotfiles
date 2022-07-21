@@ -1,10 +1,17 @@
-filetype plugin on
-""""OPTIONS""""
+" Display a cat
+echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
+
+filetype plugin indent on
+
+
+" OPTIONS {{{
 
 " Tabs
 set tabstop=4
 set softtabstop=4
+set shiftwidth=4
 set expandtab
+set breakindent
 
 " Commands
 set showcmd
@@ -32,27 +39,47 @@ set encoding=utf-8
 set hidden
 set wrap
 
-" Cursor
+" Cursor {{{
 set cursorline
 hi CursorLine cterm=None ctermbg=234 guibg=NONE guifg=NONE
 set scrolloff=20
+" }}}
 
-" Display a cat
-echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
+" }}}
 
-" Mappings
+" STATUSLINE {{{
+set laststatus=2
+set statusline=%4*\ %.20f%*                   " File name
+set statusline+=%2*\ %m%r%*%3*%y%*            " Flags (modified, readonly, file type)
+set statusline+=%1*%=%*                       " Right align
+set statusline+=%3*%{&fenc?&fenc:&enc}%*      " Encoding
+set statusline+=%2*\ [%{&ff}]%*               " File format
+set statusline+=%4*\ \ Buf:%n%*               " Buffer number
+set statusline+=%1*\ %4l:%02v%*%2*/%L%*       " line:col/total line"
+
+if $TERM == "xterm-256color"
+    hi User1 ctermfg=148 ctermbg=232
+    hi User2 ctermfg=124 ctermbg=232
+    hi User3 ctermfg=127 ctermbg=232
+    hi User4 ctermfg=28 ctermbg=232
+endif
+" }}}
+
+" MAPPINGS {{{
+
 let mapleader = '\'
 let maplocalleader = ','
 
-nnoremap <Leader>cd :CocDisable<CR>
-" Some stuf regarding <C-j> 
+" Some stuf regarding <C-j> {{{
 " https://stackoverflow.com/questions/9092982/mapping-c-j-to-something-in-vim
 let g:BASH_Ctrl_j = "off"
-augroup vimrc
-    au!
-    au VimEnter * unmap <C-j>
-    au VimEnter * noremap <C-j> <C-w>j
+augroup ctrl_j_fix
+    autocmd!
+    autocmd VimEnter * unmap <C-j>
+    autocmd VimEnter * noremap <C-j> <C-w>j
 augroup END
+" }}}
+
 " Moving lines
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -60,26 +87,40 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " Easy vimrc editing
 nnoremap <Leader>ev :split $MYVIMRC<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
+
 " Switch buffers
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
+
 " Surround with quotes
 nnoremap <Leader>" bi"<ESC>ea"<ESC>
 vnoremap <Leader>" <ESC>`<i"<ESC>`>a"<ESC>
 nnoremap <Leader>' bi'<ESC>ea'<ESC>
 vnoremap <Leader>' <ESC>`<i'<ESC>`>a'<ESC>
 
-" The big jk
+" Operator mappings {{{
+" inside next (), inside last/previous (), similar for 'a' and []
+onoremap in( :<C-U>normal! f(vi(<CR>
+onoremap an( :<C-U>normal! f(va(<CR>
+onoremap il( :<C-U>normal! F)vi(<CR>
+onoremap al( :<C-U>normal! F)va(<CR>
+onoremap in[ :<C-U>normal! f[vi[<CR>
+onoremap an[ :<C-U>normal! f[va[<CR>
+onoremap il[ :<C-U>normal! F]vi[<CR>
+onoremap al[ :<C-U>normal! F]va[<CR>
+" }}}
+
+" The big jk {{{
 " Courtesy of u/jessekelighine
 " https://www.reddit.com/r/vim/comments/ufgrl8/journey_to_the_ultimate_imap_jk_esc/
 " Map key chord `jk` to <ESC>
 let g:esc_j_lasttime = 0
 let g:esc_k_lasttime = 0
 function JKescape(key)
-    echo "JKescape called"
     if a:key=='j' | let g:esc_j_lasttime = reltimefloat(reltime()) | endif
     if a:key=='k' | let g:esc_k_lasttime = reltimefloat(reltime()) | endif
     let l:timediff = abs(g:esc_j_lasttime - g:esc_k_lasttime)
@@ -87,73 +128,42 @@ function JKescape(key)
 endfunction
 inoremap <expr> j JKescape('j')
 inoremap <expr> k JKescape('k')
+" }}}
 
-" Abbreviations
+" Abbreviations {{{
 iabbrev @@ fluffy_pentacorns@hotmail.com
+" }}}
+"
+" }}}
 
-let g:tex_flavor='latex'
+" AUTOCOMMANDS {{{
+augroup filetype_tex
+    autocmd!
+    autocmd FileType tex setlocal spell spelllang=en_us
+    autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
+augroup END
 
-" vim-plug
-" call plug#begin('~/.vim/plugged')
-" For Coc
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" 
-" " Initialize Plugins
-" call plug#end()
-" 
-" " Makes tab trigger completion
-" noremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" 
-" function! s:check_back_space() abort
-"           let col = col('.') - 1
-"             return !col || getline('.')[col - 1]  =~# '\s'
-"     endfunction
-" 
-" " Make <c-space> to trigger completion.
-" if has('nvim')
-"           inoremap <silent><expr> <c-space> coc#refresh()
-"   else
-"             inoremap <silent><expr> <c-@> coc#refresh()
-"     endif
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" " Use K to show documentation in preview window.
-" " nnoremap <silent> K :call <SID>show_documentation()<CR>
-" "
-" function! s:show_documentation()
-"    if (index(['vim','help'], &filetype) >= 0)
-"        execute 'h '.expand('<cword>')
-"          elseif (coc#rpc#ready())
-"              call CocActionAsync('doHover')
-"                else
-"                    execute '!' . &keywordprg . " " . expand('<cword>')
-"                      endif
-"                      endfunction
-" 
-" " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
-" 
-" " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-"  nmap <leader>f  <Plug>(coc-format-selected)
-" 
-"  augroup mygroup
-"    autocmd!
-"      " Setup formatexpr specified filetype(s).
-"        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"          " Update signature help on jump placeholder.
-"            autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-"            augroup end
-" 
-" " Add (Neo)Vim's native statusline support.
-" " " NOTE: Please see `:h coc-status` for integrations with external plugins
-" " that provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" 
-" " Disable Coc for tex files
-" " autocmd BufNew,BufEnter *.tex,*.sty execute "silent! CocDisable"
-" " autocmd BufLeave *.tex,*.sty execute "silent! CocEnable"
-" 
+augroup filetype_python
+    autocmd! 
+    autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+augroup END
+
+augroup filetype_cpp
+    autocmd!
+    autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+
+augroup filetype_md
+    autocmd!
+    " Text objects for headings
+    autocmd FileType markdown onoremap ih
+    \ :<c-u>execute "normal! ?^\\(==\\+\\\\|--\\+\\)$\r:nohlsearch\rkvg_"<cr>
+    autocmd FileType markdown onoremap ah
+    \ :<c-u>execute "normal! ?^\\(==\\+\\\\|--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
+augroup END
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
