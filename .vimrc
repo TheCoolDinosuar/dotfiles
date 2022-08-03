@@ -34,6 +34,10 @@ set numberwidth=5
 set updatetime=300
 set shortmess+=c
 
+" Colors
+set termguicolors
+set background=dark
+
 " Other stuff
 set encoding=utf-8
 set hidden
@@ -74,7 +78,7 @@ let g:BASH_Ctrl_j = "off"
 augroup ctrl_j_fix
     autocmd!
     autocmd VimEnter * unmap <C-j>
-    autocmd VimEnter * noremap <C-j> <C-w>j
+    " autocmd VimEnter * noremap <C-j> <C-w>j
 augroup END
 " }}}
 
@@ -164,15 +168,4 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}
-
-" COLORS {{{
-" From https://github.com/morhetz/gruvbox/wiki/Terminal-specific
-"
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-    set termguicolors
-endif
 " }}}
