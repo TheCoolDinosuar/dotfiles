@@ -57,12 +57,10 @@ set statusline+=%2*\ [%{&ff}]%*               " File format
 set statusline+=%4*\ \ Buf:%n%*               " Buffer number
 set statusline+=%1*\ %4l:%02v%*%2*/%L%*       " line:col/total line"
 
-if $TERM == "xterm-256color"
-    hi User1 ctermfg=148 ctermbg=232
-    hi User2 ctermfg=124 ctermbg=232
-    hi User3 ctermfg=127 ctermbg=232
-    hi User4 ctermfg=28 ctermbg=232
-endif
+hi User1 ctermfg=148 ctermbg=232
+hi User2 ctermfg=124 ctermbg=232
+hi User3 ctermfg=127 ctermbg=232
+hi User4 ctermfg=28 ctermbg=232
 " }}}
 
 " MAPPINGS {{{
@@ -166,4 +164,15 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+" }}}
+
+" COLORS {{{
+" From https://github.com/morhetz/gruvbox/wiki/Terminal-specific
+"
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+    set termguicolors
+endif
 " }}}
