@@ -37,15 +37,17 @@ set shortmess+=c
 " Colors
 set termguicolors
 set background=dark
+colorscheme srcery
 
 " Other stuff
 set encoding=utf-8
 set hidden
-set wrap
+set nowrap
+set textwidth=80
 
 " Cursor {{{
 set cursorline
-hi CursorLine cterm=None ctermbg=234 guibg=NONE guifg=NONE
+" hi CursorLine cterm=None ctermbg=234 guibg=NONE guifg=NONE
 set scrolloff=20
 " }}}
 
@@ -53,18 +55,56 @@ set scrolloff=20
 
 " STATUSLINE {{{
 set laststatus=2
-set statusline=%4*\ %.20f%*                   " File name
-set statusline+=%2*\ %m%r%*%3*%y%*            " Flags (modified, readonly, file type)
-set statusline+=%1*%=%*                       " Right align
-set statusline+=%3*%{&fenc?&fenc:&enc}%*      " Encoding
-set statusline+=%2*\ [%{&ff}]%*               " File format
-set statusline+=%4*\ \ Buf:%n%*               " Buffer number
-set statusline+=%1*\ %4l:%02v%*%2*/%L%*       " line:col/total line"
+" set statusline=%4*\ %.20f%*                   " File name
+" set statusline+=%2*\ %m%r%*%3*%y%*            " Flags (modified, readonly, file type)
+" set statusline+=%1*%=%*                       " Right align 
+" set statusline+=%3*%{&fenc?&fenc:&enc}%*      " Encoding
+" set statusline+=%2*\ [%{&ff}]%*               " File format
+" set statusline+=%4*\ \ Buf:%n%*               " Buffer number
+" set statusline+=%1*\ %4l:%02v%*%2*/%L%*       " line:col/total line
 
-hi User1 ctermfg=148 ctermbg=232
-hi User2 ctermfg=124 ctermbg=232
-hi User3 ctermfg=127 ctermbg=232
-hi User4 ctermfg=28 ctermbg=232
+" hi User1 ctermfg=148 ctermbg=232
+" hi User2 ctermfg=124 ctermbg=232
+" hi User3 ctermfg=127 ctermbg=232
+" hi User4 ctermfg=28 ctermbg=232
+
+" Airline {{{
+
+let g:airline_detect_paste = 0
+let g:airline_detect_crypt = 0
+let g:airline_detect_spell = 0
+let g:airline_detect_iminsert = 0
+let g:airline_inactive_collapse = 1
+let g:airline_inactive_alt_sep = 0
+
+let g:airline_highlighting_cache = 1
+
+let g:airline_section_z = 'Buf:%n %4l:%02v/%L'
+let g:airline_section_warning = ''
+
+let g:airline#extensions#vimtex#enabled = 1
+let g:airline#extensions#vimtex#continuous = "c"
+" }}}
+" }}}
+
+" VimTex {{{
+let g:vimtex_syntax_conceal = {
+          \ 'accents': 1,
+          \ 'ligatures': 1,
+          \ 'cites': 0,
+          \ 'fancy': 1,
+          \ 'greek': 1,
+          \ 'math_bounds': 0,
+          \ 'math_delimiters': 1,
+          \ 'math_fracs': 0,
+          \ 'math_super_sub': 1,
+          \ 'math_symbols': 1,
+          \ 'sections': 0,
+          \ 'styles': 0,
+          \}
+
+let g:vimtex_indent_on_ampersands = 0
+
 " }}}
 
 " MAPPINGS {{{
@@ -134,6 +174,7 @@ inoremap <expr> k JKescape('k')
 
 " Abbreviations {{{
 iabbrev @@ fluffy_pentacorns@hotmail.com
+iabbrev nname Alan Duan
 " }}}
 "
 " }}}
@@ -142,7 +183,11 @@ iabbrev @@ fluffy_pentacorns@hotmail.com
 augroup filetype_tex
     autocmd!
     autocmd FileType tex setlocal spell spelllang=en_us
+    autocmd FileType tex setlocal wrap
     autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
+    " Conceal settings {{{
+    autocmd FileType tex setlocal conceallevel=2
+    " }}}
 augroup END
 
 augroup filetype_python
@@ -162,6 +207,11 @@ augroup filetype_md
     \ :<c-u>execute "normal! ?^\\(==\\+\\\\|--\\+\\)$\r:nohlsearch\rkvg_"<cr>
     autocmd FileType markdown onoremap ah
     \ :<c-u>execute "normal! ?^\\(==\\+\\\\|--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
+augroup END
+
+augroup filetype_html
+    autocmd!
+    autocmd FileType svelte,html setlocal textwidth=0
 augroup END
 
 augroup filetype_vim
