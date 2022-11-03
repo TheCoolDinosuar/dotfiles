@@ -107,6 +107,10 @@ let g:vimtex_indent_on_ampersands = 0
 
 " }}}
 
+" Auto-Pairs {{{
+let g:AutoPairsFlyMode = 0
+" }}}
+
 " MAPPINGS {{{
 
 let mapleader = '\'
@@ -133,6 +137,9 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " Easy vimrc editing
 nnoremap <Leader>ev :split $MYVIMRC<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
+
+" Easy duan.sty editing
+nnoremap <Leader>ed :split ~/texmf/tex/latex/duan/duan.sty<CR>
 
 " Switch buffers
 nnoremap <C-h> :bp<CR>
@@ -175,6 +182,7 @@ inoremap <expr> k JKescape('k')
 " Abbreviations {{{
 iabbrev @@ fluffy_pentacorns@hotmail.com
 iabbrev nname Alan Duan
+iabbrev traingle triangle
 " }}}
 "
 " }}}
@@ -217,5 +225,7 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim let b:AutoPairs = {"(": ")"}
 augroup END
+
 " }}}
