@@ -87,6 +87,10 @@ let g:airline#extensions#vimtex#continuous = "c"
 " }}}
 " }}}
 
+" Auto-Pairs {{{
+let g:AutoPairsFlyMode = 0
+" }}}
+
 " VimTex {{{
 let g:vimtex_syntax_conceal = {
           \ 'accents': 1,
@@ -104,13 +108,8 @@ let g:vimtex_syntax_conceal = {
           \}
 
 let g:vimtex_indent_on_ampersands = 0
-
 " }}}
-
-" Auto-Pairs {{{
-let g:AutoPairsFlyMode = 0
-" }}}
-
+" 
 " MAPPINGS {{{
 
 let mapleader = '\'
@@ -188,15 +187,15 @@ iabbrev traingle triangle
 " }}}
 
 " AUTOCOMMANDS {{{
-augroup filetype_tex
-    autocmd!
-    autocmd FileType tex setlocal spell spelllang=en_us
-    autocmd FileType tex setlocal wrap
-    autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
-    " Conceal settings {{{
-    autocmd FileType tex setlocal conceallevel=2
-    " }}}
-augroup END
+" augroup filetype_tex
+    " autocmd!
+    " autocmd BufEnter *.tex setlocal spell spelllang=en_us
+    " autocmd BufEnter *.tex setlocal wrap
+    " autocmd BufEnter *.tex nnoremap <buffer> <localleader>c I%<esc>
+    " " Conceal settings {{{
+    " autocmd BufEnter *.tex setlocal conceallevel=2
+    " " }}}
+" augroup END
 
 augroup filetype_python
     autocmd! 

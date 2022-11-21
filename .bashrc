@@ -127,7 +127,7 @@ export LIBGL_ALWAYS_INDIRECT=1
 export EDITOR=vim
 
 # Path
-export PATH="${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin"
+export PATH="${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin:/home/alduan/.local/bin"
 
 # Add von to PYTHONPATH 
 export PYTHONPATH="${PYTHONPATH}:/home/alduan/von"
