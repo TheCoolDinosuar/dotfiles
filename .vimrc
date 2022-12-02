@@ -37,6 +37,7 @@ set shortmess+=c
 " Colors
 set termguicolors
 set background=dark
+set t_Co=256
 colorscheme srcery
 
 " Other stuff
@@ -85,10 +86,6 @@ let g:airline_section_warning = ''
 let g:airline#extensions#vimtex#enabled = 1
 let g:airline#extensions#vimtex#continuous = "c"
 " }}}
-" }}}
-
-" Auto-Pairs {{{
-let g:AutoPairsFlyMode = 0
 " }}}
 
 " VimTex {{{
@@ -224,7 +221,6 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim let b:AutoPairs = {"(": ")"}
 augroup END
 
 " }}}
