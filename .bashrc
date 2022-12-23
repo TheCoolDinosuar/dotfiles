@@ -136,3 +136,4 @@ compile () {
 export WINHOME="/mnt/c/users/fluff"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
