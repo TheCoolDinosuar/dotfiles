@@ -1,8 +1,16 @@
 " Display a cat
 echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
 
-filetype plugin indent on
-
+" Vim-Plug {{{
+call plug#begin()
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-obsession', { 'on': 'Obsess' }
+Plug 'lervag/vimtex'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+call plug#end()
+" }}}
 
 " OPTIONS {{{
 
@@ -44,6 +52,7 @@ colorscheme srcery
 set encoding=utf-8
 set hidden
 set nowrap
+set autoread
 set textwidth=80
 
 " Cursor {{{
@@ -169,7 +178,7 @@ function JKescape(key)
     if a:key=='j' | let g:esc_j_lasttime = reltimefloat(reltime()) | endif
     if a:key=='k' | let g:esc_k_lasttime = reltimefloat(reltime()) | endif
     let l:timediff = abs(g:esc_j_lasttime - g:esc_k_lasttime)
-    return (l:timediff <= 0.1 && l:timediff >=0.001) ? "\b\e" : a:key
+    return (l:timediff <= 0.1 && l:timediff >= 0.001) ? "\b\e" : a:key
 endfunction
 inoremap <expr> j JKescape('j')
 inoremap <expr> k JKescape('k')
@@ -223,4 +232,7 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+augroup refresh_airline
+    autocmd!
+    autocmd BufWritePost,FileWritePost * AirlineRefresh
 " }}}
