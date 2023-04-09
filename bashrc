@@ -115,7 +115,7 @@ fi
 eval "$(fasd --init auto)"
 
 # X window???
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1
 
 # Make default editor vim.

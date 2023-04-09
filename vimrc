@@ -6,9 +6,13 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-obsession', { 'on': 'Obsess' }
 Plug 'lervag/vimtex'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'SirVer/ultisnips'
 call plug#end()
 " }}}
 
@@ -103,6 +107,7 @@ let g:vimtex_syntax_conceal = {
           \ 'ligatures': 1,
           \ 'cites': 0,
           \ 'fancy': 1,
+          \ 'spacing': 1,
           \ 'greek': 1,
           \ 'math_bounds': 0,
           \ 'math_delimiters': 1,
@@ -115,7 +120,11 @@ let g:vimtex_syntax_conceal = {
 
 let g:vimtex_indent_on_ampersands = 0
 " }}}
-" 
+
+" UltiSnips {{{
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+" }}}
+
 " MAPPINGS {{{
 
 let mapleader = '\'
