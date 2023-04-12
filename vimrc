@@ -1,5 +1,5 @@
 " Display a cat
-echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
+"echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
 
 " Vim-Plug {{{
 call plug#begin()
@@ -119,6 +119,7 @@ let g:vimtex_syntax_conceal = {
           \}
 
 let g:vimtex_indent_on_ampersands = 0
+let g:vimtex_view_enabled = 0
 " }}}
 
 " UltiSnips {{{
@@ -127,8 +128,8 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " MAPPINGS {{{
 
-let mapleader = '\'
-let maplocalleader = ','
+let g:mapleader = '\'
+let g:maplocalleader = ','
 
 " Some stuf regarding <C-j> {{{
 " https://stackoverflow.com/questions/9092982/mapping-c-j-to-something-in-vim
@@ -149,7 +150,7 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Easy vimrc editing
-nnoremap <Leader>ev :split $MYVIMRC<CR>
+nnoremap <Leader>ev :split ~/dotfiles/vimrc<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
 
 " Easy duan.sty editing

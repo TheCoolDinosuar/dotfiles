@@ -10,3 +10,4 @@ alias ta="t a -t"
 
 alias mv="mv -i" # Prompts overwrite of existing dir
 alias mkdir="mkdir -p" # Creates directories if needed
+alias vim="nvim"
