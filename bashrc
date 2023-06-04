@@ -129,11 +129,35 @@ export PYTHONPATH="${PYTHONPATH}:/home/alduan/von"
 
 # Compiling C++ for competitive programming
 compile () {
-        g++ --std=c++17 -Wall -Wextra -Wshadow -Wfloat-equal -O2 -ggdb -fsanitize=address,undefined $1 -o $2
+        g++ --std=c++17 -Wall -Wextra -Wshadow -Wfloat-equal -O2 -ggdb -fsanitize=address,undefined ${1:-sol.cpp} -o ${2:-sol}
 }
 
+# Create USACO Folder
+usaco () {
+        mkdir $1 && cd $1 && touch $1.in $1.out sol.cpp && vim *
+}
 # Path to windows home
 export WINHOME="/mnt/c/users/fluff"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/alduan/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/alduan/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/alduan/mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/alduan/mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/alduan/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/alduan/mambaforge/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
