@@ -13,6 +13,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
+Plug 'kovisoft/slimv'
 call plug#end()
 " }}}
 
@@ -107,7 +108,7 @@ let g:vimtex_syntax_conceal = {
           \ 'ligatures': 1,
           \ 'cites': 0,
           \ 'fancy': 1,
-          \ 'spacing': 1,
+          \ 'spacing': 0,
           \ 'greek': 1,
           \ 'math_bounds': 0,
           \ 'math_delimiters': 1,
@@ -120,6 +121,7 @@ let g:vimtex_syntax_conceal = {
 
 let g:vimtex_indent_on_ampersands = 0
 let g:vimtex_view_enabled = 0
+let g:vimtex_fold_enabled = 1
 " }}}
 
 " UltiSnips {{{
@@ -242,7 +244,24 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-augroup refresh_airline
-    autocmd!
-    autocmd BufWritePost,FileWritePost * AirlineRefresh
+" augroup refresh_airline
+    " autocmd!
+    " autocmd BufWritePost,FileWritePost * AirlineRefresh
+" augroup END
 " }}}
+
+let g:clipboard = {
+            \   'name': 'WslClipboard',
+            \   'copy': {
+            \      '+': 'clip.exe',
+            \      '*': 'clip.exe',
+            \    },
+            \   'paste': {
+            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
+
+" Slimv
+let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.quicklisp/dists/quicklisp/software/slime-v2.28/start-swank.lisp &'
