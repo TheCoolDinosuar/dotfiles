@@ -265,3 +265,5 @@ let g:clipboard = {
 
 " Slimv
 let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.quicklisp/dists/quicklisp/software/slime-v2.28/start-swank.lisp &'
+" Temp fix until https://github.com/neovim/neovim/issues/24003 is resolved
+source ~/.local/share/nvim/plugged/slimv/ftplugin/lisp/slimv-lisp.vim
