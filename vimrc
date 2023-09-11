@@ -244,6 +244,11 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+augroup filetype_lisp
+    autocmd!
+    " Temp fix until https://github.com/neovim/neovim/issues/24003 is resolved
+    autocmd FileType lisp source ~/.local/share/nvim/plugged/slimv/ftplugin/lisp/slimv-lisp.vim
+
 " augroup refresh_airline
     " autocmd!
     " autocmd BufWritePost,FileWritePost * AirlineRefresh
@@ -265,5 +270,3 @@ let g:clipboard = {
 
 " Slimv
 let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.quicklisp/dists/quicklisp/software/slime-v2.28/start-swank.lisp &'
-" Temp fix until https://github.com/neovim/neovim/issues/24003 is resolved
-source ~/.local/share/nvim/plugged/slimv/ftplugin/lisp/slimv-lisp.vim
