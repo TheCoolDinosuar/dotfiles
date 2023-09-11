@@ -122,9 +122,9 @@ export LIBGL_ALWAYS_INDIRECT=1
 export EDITOR=vim
 
 # Path
-export PATH="${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin:/home/alduan/.local/bin"
-
-# Add von to PYTHONPATH 
+export PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin:/home/alduan/.local/bin"
+export MANPATH="${MANPATH}:/usr/local/texlive/2023/texmf-dist/doc/man"
+export INFOPATH="${INFOPATH}:/usr/local/texlive/2023/texmf-dist/doc/info"
 export PYTHONPATH="${PYTHONPATH}:/home/alduan/von"
 
 # Compiling C++ for competitive programming
@@ -136,8 +136,9 @@ compile () {
 usaco () {
         mkdir $1 && cd $1 && touch $1.in $1.out sol.cpp && vim *
 }
-# Path to windows home
-export WINHOME="/mnt/c/users/fluff"
+export WINHOME="/mnt/c/users/fluff" # Windows Home
+export DOWNLOADS="/mnt/c/users/fluff/downloads" # Downlaods Folder
+export DIARY="/mnt/c/users/fluff/OneDrive/Documents/diary/years" # Diary
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
