@@ -5,7 +5,7 @@
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-obsession', { 'on': 'Obsess' }
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'tag': 'v2.14' }
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -110,18 +110,38 @@ let g:vimtex_syntax_conceal = {
           \ 'fancy': 1,
           \ 'spacing': 0,
           \ 'greek': 1,
-          \ 'math_bounds': 0,
+          \ 'math_bounds': 1,
           \ 'math_delimiters': 1,
           \ 'math_fracs': 0,
           \ 'math_super_sub': 1,
           \ 'math_symbols': 1,
           \ 'sections': 0,
-          \ 'styles': 0,
+          \ 'styles': 1,
           \}
 
 let g:vimtex_indent_on_ampersands = 0
 let g:vimtex_view_enabled = 0
 let g:vimtex_fold_enabled = 1
+
+let g:vimtex_syntax_custom_cmds = [
+      "\ Unicode:,
+      \ {'name': 'perp', 'mathmode': 1, 'concealchar': '⟂'},
+      \ {'name': 'dangle', 'mathmode': 1, 'concealchar': '∡'},
+      \ {'name': 'prod', 'mathmode': 1, 'concealchar': 'Π'},
+      \ {'name': 'ZZ', 'mathmode': 1, 'concealchar': 'ℤ'},
+      \ {'name': 'PP', 'mathmode': 1, 'concealchar': 'ℙ'},
+      \ {'name': 'EE', 'mathmode': 1, 'concealchar': '𝔼'},
+      \ {'name': 'RR', 'mathmode': 1, 'concealchar': 'ℝ'},
+      \ {'name': 'NN', 'mathmode': 1, 'concealchar': 'ℕ'},
+      \ {'name': 'QQ', 'mathmode': 1, 'concealchar': 'ℚ'},
+      \ {'name': 'CC', 'mathmode': 1, 'concealchar': 'ℂ'},
+      \ {'name': 'Deg', 'mathmode': 1, 'concealchar': '°'},
+      \ {'name': 'st', 'mathmode': 1, 'concealchar': '°'},
+      \ {'name': 'del', 'mathmode': 1, 'concealchar': '∂'},
+      \ {'name': 'dotsc', 'mathmode': 1, 'concealchar': '…'},
+      \ {'name': 'dotsb', 'mathmode': 1, 'concealchar': '⋯'},
+      \ {'name': 'times', 'mathmode': 1, 'concealchar': '×'},
+      \]
 " }}}
 
 " UltiSnips {{{
@@ -161,6 +181,9 @@ nnoremap <Leader>ed :split ~/texmf/tex/latex/duan/duan.sty<CR>
 " Switch buffers
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
+
+" Clear search highlighting
+nnoremap <nowait><silent> <C-C> :noh<CR>
 
 " Surround with quotes
 nnoremap <Leader>" bi"<ESC>ea"<ESC>

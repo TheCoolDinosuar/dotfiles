@@ -162,3 +162,5 @@ if [ -f "/home/alduan/mambaforge/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
+# To-do list
+cat ~/.todo
