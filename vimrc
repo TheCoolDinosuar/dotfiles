@@ -1,6 +1,3 @@
-" Display a cat
-"echo "      \\    /\\\n       )  ( ')\n      (  /  )\n       \\(__)|\nHello!"
-
 " Vim-Plug {{{
 call plug#begin()
 Plug 'vim-airline/vim-airline'
@@ -70,18 +67,6 @@ set scrolloff=20
 
 " STATUSLINE {{{
 set laststatus=2
-" set statusline=%4*\ %.20f%*                   " File name
-" set statusline+=%2*\ %m%r%*%3*%y%*            " Flags (modified, readonly, file type)
-" set statusline+=%1*%=%*                       " Right align 
-" set statusline+=%3*%{&fenc?&fenc:&enc}%*      " Encoding
-" set statusline+=%2*\ [%{&ff}]%*               " File format
-" set statusline+=%4*\ \ Buf:%n%*               " Buffer number
-" set statusline+=%1*\ %4l:%02v%*%2*/%L%*       " line:col/total line
-
-" hi User1 ctermfg=148 ctermbg=232
-" hi User2 ctermfg=124 ctermbg=232
-" hi User3 ctermfg=127 ctermbg=232
-" hi User4 ctermfg=28 ctermbg=232
 
 " Airline {{{
 
@@ -102,49 +87,9 @@ let g:airline#extensions#vimtex#continuous = "c"
 " }}}
 " }}}
 
-" VimTex {{{
-let g:vimtex_syntax_conceal = {
-          \ 'accents': 1,
-          \ 'ligatures': 1,
-          \ 'cites': 0,
-          \ 'fancy': 1,
-          \ 'spacing': 0,
-          \ 'greek': 1,
-          \ 'math_bounds': 1,
-          \ 'math_delimiters': 1,
-          \ 'math_fracs': 0,
-          \ 'math_super_sub': 1,
-          \ 'math_symbols': 1,
-          \ 'sections': 0,
-          \ 'styles': 1,
-          \}
-
-let g:vimtex_indent_on_ampersands = 0
-let g:vimtex_view_enabled = 0
-let g:vimtex_fold_enabled = 1
-
-let g:vimtex_syntax_custom_cmds = [
-      "\ Unicode:,
-      \ {'name': 'perp', 'mathmode': 1, 'concealchar': '⟂'},
-      \ {'name': 'dangle', 'mathmode': 1, 'concealchar': '∡'},
-      \ {'name': 'prod', 'mathmode': 1, 'concealchar': 'Π'},
-      \ {'name': 'ZZ', 'mathmode': 1, 'concealchar': 'ℤ'},
-      \ {'name': 'PP', 'mathmode': 1, 'concealchar': 'ℙ'},
-      \ {'name': 'EE', 'mathmode': 1, 'concealchar': '𝔼'},
-      \ {'name': 'RR', 'mathmode': 1, 'concealchar': 'ℝ'},
-      \ {'name': 'NN', 'mathmode': 1, 'concealchar': 'ℕ'},
-      \ {'name': 'QQ', 'mathmode': 1, 'concealchar': 'ℚ'},
-      \ {'name': 'CC', 'mathmode': 1, 'concealchar': 'ℂ'},
-      \ {'name': 'Deg', 'mathmode': 1, 'concealchar': '°'},
-      \ {'name': 'st', 'mathmode': 1, 'concealchar': '°'},
-      \ {'name': 'del', 'mathmode': 1, 'concealchar': '∂'},
-      \ {'name': 'dotsc', 'mathmode': 1, 'concealchar': '…'},
-      \ {'name': 'dotsb', 'mathmode': 1, 'concealchar': '⋯'},
-      \ {'name': 'times', 'mathmode': 1, 'concealchar': '×'},
-      \]
-" }}}
-
 " UltiSnips {{{
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsExpandOrJumpTrigger = "<Tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " }}}
 
@@ -228,15 +173,6 @@ iabbrev traingle triangle
 " }}}
 
 " AUTOCOMMANDS {{{
-" augroup filetype_tex
-    " autocmd!
-    " autocmd BufEnter *.tex setlocal spell spelllang=en_us
-    " autocmd BufEnter *.tex setlocal wrap
-    " autocmd BufEnter *.tex nnoremap <buffer> <localleader>c I%<esc>
-    " " Conceal settings {{{
-    " autocmd BufEnter *.tex setlocal conceallevel=2
-    " " }}}
-" augroup END
 
 augroup filetype_python
     autocmd! 
@@ -272,24 +208,7 @@ augroup filetype_lisp
     " Temp fix until https://github.com/neovim/neovim/issues/24003 is resolved
     autocmd FileType lisp source ~/.local/share/nvim/plugged/slimv/ftplugin/lisp/slimv-lisp.vim
 
-" augroup refresh_airline
-    " autocmd!
-    " autocmd BufWritePost,FileWritePost * AirlineRefresh
-" augroup END
 " }}}
-
-let g:clipboard = {
-            \   'name': 'WslClipboard',
-            \   'copy': {
-            \      '+': 'clip.exe',
-            \      '*': 'clip.exe',
-            \    },
-            \   'paste': {
-            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            \   },
-            \   'cache_enabled': 0,
-            \ }
 
 " Slimv
 let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.quicklisp/dists/quicklisp/software/slime-v2.28/start-swank.lisp &'
