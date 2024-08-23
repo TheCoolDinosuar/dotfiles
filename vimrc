@@ -11,6 +11,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'kovisoft/slimv'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()
 " }}}
 
@@ -56,10 +57,10 @@ set hidden
 set nowrap
 set autoread
 set textwidth=80
+set signcolumn=yes
 
 " Cursor {{{
 set cursorline
-" hi CursorLine cterm=None ctermbg=234 guibg=NONE guifg=NONE
 set scrolloff=20
 " }}}
 
@@ -88,8 +89,9 @@ let g:airline#extensions#vimtex#continuous = "c"
 " }}}
 
 " UltiSnips {{{
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
-let g:UltiSnipsExpandOrJumpTrigger = "<Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<C-N>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-P>"
+let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " }}}
 
@@ -212,3 +214,7 @@ augroup filetype_lisp
 
 " Slimv
 let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.quicklisp/dists/quicklisp/software/slime-v2.28/start-swank.lisp &'
+
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+                              \. " <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
