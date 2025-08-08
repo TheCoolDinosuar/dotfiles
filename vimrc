@@ -8,6 +8,7 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'SirVer/ultisnips'
 Plug 'kovisoft/slimv'
 Plug 'Julian/lean.nvim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
 call plug#end()
