@@ -1,17 +1,15 @@
 " Vim-Plug {{{
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-obsession', { 'on': 'Obsess' }
-Plug 'lervag/vimtex', { 'tag': 'v2.14' }
+Plug 'lervag/vimtex'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'kovisoft/slimv'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'Julian/lean.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 " }}}
 
@@ -165,6 +163,10 @@ endfunction
 inoremap <expr> j JKescape('j')
 inoremap <expr> k JKescape('k')
 " }}}
+
+" https://stackoverflow.com/questions/4298910/vim-close-buffer-but-not-split-window
+" Closes buffer but keeps window split
+nnoremap <leader>d :b#<bar>bd#<CR>
 
 " Abbreviations {{{
 iabbrev @@ fluffy_pentacorns@hotmail.com
