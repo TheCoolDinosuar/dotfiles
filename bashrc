@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\t ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='\t ${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -122,7 +122,7 @@ export LIBGL_ALWAYS_INDIRECT=1
 export EDITOR=vim
 
 # Path
-export PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin:/home/alduan/.local/bin"
+export PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH}:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowershell/v1.0:/mnt/c/WINDOWS/System32/OpenSSH:/mnt/c/Users/fluff/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/fluff/AppData/Local/SumatraPDF:/mnt/c/Program Files/Notepad++:/home/alduan/clones/pypy3.9-v7.3.8-linux64/bin:/home/alduan/.local/bin:/home/alduan/chrome/linux-132.0.6834.111/chrome-linux64:/home/alduan/chrome"
 export MANPATH="${MANPATH}:/usr/local/texlive/2023/texmf-dist/doc/man"
 export INFOPATH="${INFOPATH}:/usr/local/texlive/2023/texmf-dist/doc/info"
 export PYTHONPATH="${PYTHONPATH}:/home/alduan/von"
@@ -137,7 +137,8 @@ usaco () {
         mkdir $1 && cd $1 && touch $1.in $1.out sol.cpp && vim *
 }
 export WINHOME="/mnt/c/users/fluff" # Windows Home
-export DOWNLOADS="/mnt/c/users/fluff/downloads" # Downlaods Folder
+export MIT="/mnt/c/users/fluff/Onedrive/Documents/mit" # Windows Home
+export DOWNLOADS="/mnt/c/users/fluff/downloads" # Downloads Folder
 export DIARY="/mnt/c/users/fluff/OneDrive/Documents/diary/years" # Diary
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
