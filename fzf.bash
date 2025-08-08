@@ -5,6 +5,7 @@ if [[ ! "$PATH" == */home/alduan/.fzf/bin* ]]; then
 fi
 
 export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND='fd . $DOWNLOADS'
 export FZF_ALT_C_COMMAND='fd . $HOME --exclude mambaforge'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --inline-info'
 
